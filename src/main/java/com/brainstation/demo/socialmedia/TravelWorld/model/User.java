@@ -1,5 +1,6 @@
 package com.brainstation.demo.socialmedia.TravelWorld.model;
 
+import com.brainstation.demo.socialmedia.TravelWorld.model.enums.RoleName;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,7 +23,6 @@ public class User {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Size(min=5, max=50)
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -33,9 +33,8 @@ public class User {
     @Column(name = "is_active", columnDefinition= "TINYINT(1)")
     private Boolean isActive;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private RoleName role;
 
     @Column
     @CreationTimestamp
